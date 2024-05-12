@@ -32,13 +32,18 @@ export default function NewProduct() {
 
 const onSubmit = async (formData, e,router,productId,imgs) => {
   e.preventDefault();
+  console.log(formData)
 
-  
   try {
-    const response = await fetch('/api/products/new-product', {
+    await fetch('/api/products/new-product', {
       method: METHODS.POST,
       headers: HEADERS,
       body: JSON.stringify({...formData, productId,imgs}) 
+    });
+    await fetch(`/api/categories/edit-category?id=${formData.parent}`, {
+      method: METHODS.PUT,
+      headers: HEADERS,
+      body: JSON.stringify({productId, categories: formData.parent}) 
     });
 
  

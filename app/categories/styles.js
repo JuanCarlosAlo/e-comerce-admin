@@ -1,18 +1,9 @@
 "use client"
 
+import { COLORS } from "@/lib/colors"
 import Link from "next/link"
 
-const { COLORS } = require("@/lib/colors")
 const { styled } = require("styled-components")
-
-const StyledButton = styled(Link)`
-background-color: ${COLORS.MAIN};
-color: ${COLORS.WHITE};
-padding: 12px;
-border-radius: 8px;
-margin-left: 1rem;
-
-`
 
 const StyledProductContainer = styled.div`
 display: flex;
@@ -42,4 +33,12 @@ gap: 1rem;
 overflow-y: scroll;
 `
 
-export{StyledButton,StyledProductContainer,StyledProductList,StyledLegendContainer}
+const StyledButton = styled(Link)`
+background-color: ${COLORS.MAIN};
+color: ${COLORS.WHITE};
+padding: 12px;
+border-radius: 8px;
+margin-left: 1rem;
+
+`
+export{StyledProductContainer,StyledLegendContainer,StyledProductList,StyledButton}

@@ -45,14 +45,19 @@ const EditProducts = ({ params: { productId } }) => {
 
 const onSubmit = async (formData, e, router,productId,imgs) => {
   e.preventDefault();
-  const { name, description, price } = formData;
-  console.log(formData,imgs)
+  console.log(formData)
   try {
-    const response = await fetch(`/api/products/edit-product?id=${productId}`, {
+    await fetch(`/api/products/edit-product?id=${productId}`, {
       method: METHODS.PUT,
       headers: HEADERS,
       body: JSON.stringify({ ...formData, productId,imgs }),
     });
+    await fetch(`/api/categories/edit-category?id=${formData.category}`, {
+      method: METHODS.PUT,
+      headers: HEADERS,
+      body: JSON.stringify({productId, category: formData.category}) 
+    });
+
 
     router.push("/products");
   } catch (error) {

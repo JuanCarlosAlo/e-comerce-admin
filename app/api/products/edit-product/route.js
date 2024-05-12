@@ -7,10 +7,13 @@ export async function PUT(req, res) {
     await mongooseConnect();
     const body = await req.json();
    const _id = ( req.nextUrl.searchParams.get('id'))
+   const { name, description, price, productId, imgs ,category,properties} = body;
    if(_id){
-  
+    
     try {
-        await NewProductModel.updateOne({_id},{...body})
+        await NewProductModel.updateOne({_id},{
+            name, description, price, productId, imgs ,categories: category, properties
+        })
 
         return NextResponse.json('Object edited succsesfully');
     } catch (error) {

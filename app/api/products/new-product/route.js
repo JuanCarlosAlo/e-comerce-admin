@@ -9,7 +9,7 @@ export async function POST(req, res) {
     const body = await req.json()
 
     try {
-        const { name, description, price, productId, imgs } = body;
+        const { name, description, price, productId, imgs ,parent,properties} = body;
         const imageItem = imgs.map((img) => {
             const imageId = v4();
 
@@ -29,7 +29,9 @@ export async function POST(req, res) {
             name,
             description,
             price,
-            imgs: imageItem
+            imgs: imageItem,
+            categories: [...parent],
+            properties
         });
   
         await newProduct.save();
