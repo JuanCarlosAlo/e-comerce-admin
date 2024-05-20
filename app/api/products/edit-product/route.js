@@ -1,10 +1,12 @@
 import { NewProductModel } from "@/lib/database/schemes/NewProduct.scheme";
 import { mongooseConnect } from "@/lib/mongoose";
 import { NextResponse } from "next/server";
+import { isAdminRequest } from "../../auth/[...nextauth]/route";
 
 
 export async function PUT(req, res) {
     await mongooseConnect();
+    await isAdminRequest(req,res);
     const body = await req.json();
    const _id = ( req.nextUrl.searchParams.get('id'))
    const { name, description, price, productId, imgs ,category,properties} = body;

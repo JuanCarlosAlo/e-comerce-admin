@@ -1,4 +1,5 @@
 import React from "react";
+import { StyledCheboxContainer, StyledPropertiesContainer, StyledPropertyContainer } from "./styles";
 
 const PropertiesSelect = React.memo(({ properties, onChange }) => {
   const handlePropertyChange = (propertyId, value) => {
@@ -10,22 +11,25 @@ const PropertiesSelect = React.memo(({ properties, onChange }) => {
       <label>Properties</label>
       {properties.length > 0 ? (
         properties.map((property) => (
-          <div key={property._id}>
-            <label>{property.name}</label>
-            <div>
+          <StyledPropertyContainer key={property._id}>
+            <span>{property.name}</span>
+            <StyledPropertiesContainer>
               {property.values.map((value) => (
-                <label key={value}>
-                  <input
-                    type="checkbox"
-                    value={value}
-                    checked={property.selectedValues.includes(value)}
-                    onChange={() => handlePropertyChange(property._id, value)}
-                  />
+                <StyledCheboxContainer key={value}> 
+                <span >
+                 
                   {value}
-                </label>
+                </span>
+                 <input
+                 type="checkbox"
+                 value={value}
+                 checked={property.selectedValues.includes(value)}
+                 onChange={() => handlePropertyChange(property._id, value)}
+               />
+               </StyledCheboxContainer>
               ))}
-            </div>
-          </div>
+            </StyledPropertiesContainer>
+          </StyledPropertyContainer>
         ))
       ) : (
         <p>No properties available</p>

@@ -1,13 +1,13 @@
 import React from "react";
-import { StyledInput, StyledInputContainer, StyledLabel, StyledTextArea } from "./styles";
+import { StyledInputContainer } from "./styles";
 
 const InputComponent = ({ field, register,formValidation ,errors,defaultValue}) => {
   
   return (
     <StyledInputContainer>
-      <StyledLabel htmlFor={field.name}>{field.label}</StyledLabel>
+      <label htmlFor={field.name}>{field.label}</label>
       {field.type === "textarea" ? (
-        <StyledTextArea 
+        <textarea 
         id={field.name}
         type={field.type} 
         name={field.name}
@@ -16,12 +16,12 @@ const InputComponent = ({ field, register,formValidation ,errors,defaultValue}) 
         {...register(field.name, formValidation)}
         >
 
-        </StyledTextArea>
+        </textarea>
         
 
       ) : (
         
-        <StyledInput 
+        <input 
         id={field.name}
         type={field.type} 
         name={field.name}
@@ -29,7 +29,7 @@ const InputComponent = ({ field, register,formValidation ,errors,defaultValue}) 
         defaultValue={defaultValue}
         {...register(field.name, formValidation)}
         >
-        </StyledInput>
+        </input>
       )}
       <p>{errors?.[field.name]?.message}</p>
     </StyledInputContainer>

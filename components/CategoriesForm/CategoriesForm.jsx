@@ -21,26 +21,25 @@ const CategoriesForm = ({
   const [properties, setProperties] = useState(
     categoryToEdit ? categoryToEdit.properties : []
   );
- // Función para agregar una nueva propiedad
+
  const addProperty = () => {
   setProperties([...properties, { name: "", values: [],_id: v4() }]);
 };
 
-// Función para eliminar una propiedad
+
 const removeProperty = (index) => {
   const newProperties = [...properties];
   newProperties.splice(index, 1);
   setProperties(newProperties);
 };
 
-// Función para manejar los cambios en el nombre de una propiedad
+
 const handlePropertyNameChange = (index, e) => {
   const newProperties = [...properties];
   newProperties[index].name = e.target.value;
   setProperties(newProperties);
 };
 
-// Función para manejar los cambios en los valores de una propiedad
 const handlePropertyValuesChange = (index, e) => {
   const newProperties = [...properties];
   newProperties[index].values = e.target.value.split(",").map((value) => value.trim());

@@ -1,13 +1,21 @@
-import { StyledAside, StyledLink, StyledNavbar } from "./styles";
+"use client"
+import { StyledAside, StyledButton, StyledLink, StyledNavbar } from "./styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShop } from "@fortawesome/free-solid-svg-icons";
+import { faShop, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { navbarLinks } from "@/lib/Sections/navbarLinks";
-import { useSelectedLayoutSegment } from 'next/navigation'
+import { useRouter, useSelectedLayoutSegment } from 'next/navigation'
+import { signOut } from "next-auth/react";
+
 
 
 const Navbar = () => {
 
     const activeSegment = useSelectedLayoutSegment(); 
+    const router = useRouter()
+    const logout = async () => {
+        await router.push('/');
+        await signOut()
+    }
     return (
         <StyledAside>
             <StyledLink href="/">
@@ -27,6 +35,10 @@ const Navbar = () => {
                         {link.name}
                     </StyledLink>
                 ))}
+                <StyledButton onClick={logout}>
+                        <FontAwesomeIcon icon={faSignOut} />
+                        SignOut
+                    </StyledButton>
             </StyledNavbar>
         </StyledAside>
     );

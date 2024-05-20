@@ -3,9 +3,11 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { NextResponse } from "next/server";
 
 import { v4 } from "uuid";
+import { isAdminRequest } from "../../auth/[...nextauth]/route";
 
 export async function POST(req, res) {
     await mongooseConnect();
+    await isAdminRequest(req,res);
     const body = await req.json()
 
     try {

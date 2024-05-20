@@ -9,6 +9,15 @@ width:100vw;
 background-color: ${COLORS.MAIN};
 `
 
+const StyledLoginPage = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+height:100vh;
+width:100vw;
+background-color: ${COLORS.MAIN};
+`
+
 const StyledButton = styled.button`
 padding: 1rem;
 background-color: ${COLORS.black};
@@ -28,4 +37,4 @@ padding: 1rem;
 overflow-y:scroll;
 
 `
-export {StyledPage,StyledButton,StyledContent}
+export {StyledPage,StyledButton,StyledContent,StyledLoginPage}
